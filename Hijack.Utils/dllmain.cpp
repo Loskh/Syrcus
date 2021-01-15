@@ -28,7 +28,7 @@ DWORD_PTR HijackUtilsDLL::Scan(const char *string) {
 
 VOID HijackUtilsDLL::SetLogger() {
   ofs.imbue(std::locale(std::locale(), "", LC_CTYPE));
-  auto logPath = HijackUtilsDLL::WorkPath + L"\\SoundCoreBridge.log";
+  auto logPath = HijackUtilsDLL::WorkPath + L"\\Syrcus.log";
   ofs.open(logPath, std::wofstream::app);
 };
 
