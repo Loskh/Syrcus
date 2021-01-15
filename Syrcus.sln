@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Syrcus", "Syrcus\Syrcus.vcxproj", "{B4307566-89B4-4580-B8AB-B3521581B997}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E01EE913-1144-4C17-9E9F-518059EDD7BB} = {E01EE913-1144-4C17-9E9F-518059EDD7BB}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hijack.Utils", "Hijack.Utils\Hijack.Utils.vcxproj", "{E01EE913-1144-4C17-9E9F-518059EDD7BB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Syrcus.SamplePlugin", "Syrcus.SamplePlugin\Syrcus.SamplePlugin.vcxproj", "{81D0B28F-9092-4818-8A76-9FF7BF184DE2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4307566-89B4-4580-B8AB-B3521581B997}.Debug|x64.ActiveCfg = Debug|x64
+		{B4307566-89B4-4580-B8AB-B3521581B997}.Debug|x64.Build.0 = Debug|x64
+		{B4307566-89B4-4580-B8AB-B3521581B997}.Release|x64.ActiveCfg = Release|x64
+		{B4307566-89B4-4580-B8AB-B3521581B997}.Release|x64.Build.0 = Release|x64
+		{E01EE913-1144-4C17-9E9F-518059EDD7BB}.Debug|x64.ActiveCfg = Debug|x64
+		{E01EE913-1144-4C17-9E9F-518059EDD7BB}.Debug|x64.Build.0 = Debug|x64
+		{E01EE913-1144-4C17-9E9F-518059EDD7BB}.Release|x64.ActiveCfg = Release|x64
+		{E01EE913-1144-4C17-9E9F-518059EDD7BB}.Release|x64.Build.0 = Release|x64
+		{81D0B28F-9092-4818-8A76-9FF7BF184DE2}.Debug|x64.ActiveCfg = Debug|x64
+		{81D0B28F-9092-4818-8A76-9FF7BF184DE2}.Debug|x64.Build.0 = Debug|x64
+		{81D0B28F-9092-4818-8A76-9FF7BF184DE2}.Release|x64.ActiveCfg = Release|x64
+		{81D0B28F-9092-4818-8A76-9FF7BF184DE2}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7BD85DDE-4773-430E-A363-CC493F673CC7}
+	EndGlobalSection
+EndGlobal
