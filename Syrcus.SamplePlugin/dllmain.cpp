@@ -6,8 +6,7 @@
 Plugin::Plugin() { return; };
 
 void Plugin::StarlightBreaker() {
-  DWORD_PTR address =
-      Interface->Scan("74??488BD3E8????????488BC3");
+  DWORD_PTR address = Interface->Scan("74??488BD3E8????????488BC3");
   // out << std ::hex << address << std ::endl;
   char *p;
   p = (char *)address;
@@ -19,10 +18,12 @@ void Plugin::Init(HijackUtils *Util) {
   Name = L"TestPlugin";
   Interface = Util;
   Log(L"Hello World!");
-  StarlightBreaker();
+  //StarlightBreaker();
 }
 std::wstring Plugin::GetName() { return Name; }
-void Plugin::Log(std::wstring msg) { Interface->Log(L" ["+Name+L"] " + msg); };
+void Plugin::Log(std::wstring msg) {
+  Interface->Log(L" [" + Name + L"] " + msg);
+};
 
 Plugin *CreateInstance() {
   Plugin *p = new Plugin();

@@ -17,6 +17,14 @@ public:
 };
 typedef Plugin *(*PluginInstance)();
 
+class PluginEntity {
+public:
+  std::wstring Name;
+  std::wstring Path;
+  HINSTANCE Handle;
+  Plugin *Instance;
+};
+
 
 
 

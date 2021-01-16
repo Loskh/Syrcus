@@ -1,6 +1,5 @@
 ﻿// dllmain.cpp : 定义 DLL 应用程序的入口点。
 
-
 #include <atlstr.h>
 #include <cassert>
 #include <fstream>
@@ -21,7 +20,8 @@ std::wofstream ofs;
 std::wstring WorkPath;
 std::wstring GetWorkPath() { return WorkPath; };
 HijackUtils *Utils;
-std::list<Plugin *> PluginList;
+//std::list<Plugin *> PluginList;
+std::list<PluginEntity *> PluginManager;
 
 VOID Log(std::wstring msg) { Utils->Log(msg); };
 
@@ -39,6 +39,12 @@ VOID LoadUtils() {
   if (hUtil) {
     instance = (HijackUtilsInstance)GetProcAddress(hUtil, "CreateInstance");
     Utils = instance();
+    auto pEntity = new PluginEntity();
+    pEntity->Name = L"Hijack.Utils.dll";
+    pEntity->Path = WorkPath + L"\\" + pEntity->Name;
+    pEntity->Handle = hUtil;
+    pEntity->Instance = NULL;
+    PluginManager.push_back(pEntity);
   }
 }
 
@@ -70,11 +76,17 @@ VOID LoadPlugin(std::wstring path) {
   PluginInstance pInst;
   if (hDLL) {
     pInst = (PluginInstance)GetProcAddress(hDLL, "CreateInstance");
-    Plugin *logTest = pInst();
-    if (logTest) {
-      PluginList.push_back(logTest);
-      logTest->Init(Utils);
-      Log(logTest->GetName() + L"已加载");
+    Plugin *plugin = pInst();
+    if (plugin) {
+      //PluginList.push_back(plugin);
+      plugin->Init(Utils);
+      Log(plugin->GetName() + L"已加载");
+      auto pEntity = new PluginEntity();
+      pEntity->Name = plugin->GetName();
+      pEntity->Path = path;
+      pEntity->Handle = hDLL;
+      pEntity->Instance = plugin;
+      PluginManager.push_back(pEntity);
     }
   } else {
     Log(path + L"加载失败");
@@ -90,6 +102,12 @@ VOID LoadPlugins() {
     LoadPlugin(file);
   }
 };
+
+VOID FreePlugins() {
+  for (auto plugin : PluginManager) {
+    FreeLibrary(plugin->Handle);
+  }
+}
 
 VOID RunCmdLine(std::wstring cmdLine) {
   STARTUPINFO si = {sizeof(si)};
@@ -137,7 +155,10 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call,
     }
     break;
   case DLL_THREAD_ATTACH:
+    break;
   case DLL_THREAD_DETACH:
+    FreePlugins();
+    break;
   case DLL_PROCESS_DETACH:
     //Log(L"进程已退出");
     break;
